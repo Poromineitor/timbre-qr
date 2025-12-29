@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Timbre</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 40%;
-    }
-    h1 {
-      font-size: 2em;
-    }
-  </style>
-</head>
-<body>
-  <h1>🔔 Llamando al timbre…</h1>
-  <p>En un segundo se abrirá WhatsApp</p>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timbre</title>
 
-  <script>
-    setTimeout(() => {
-      window.location.href =
-        "https://wa.me/5493718592662?text=Hola,%20estoy%20en%20la%20puerta%20🚪🔔";
-    }, 1000);
-  </script>
+<style>
+body {
+  font-family: system-ui, Arial, sans-serif;
+  text-align: center;
+  padding-top: 40vh;
+}
+</style>
+
+<script>
+window.onload = () => {
+  const mensaje = encodeURIComponent("🚪🔔 Alguien está en la puerta");
+  const numero = "549XXXXXXXXXX";
+
+  // Vibración (Android)
+  if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+
+  // Redirección inmediata
+  window.location.replace(
+    `https://wa.me/${numero}?text=${mensaje}`
+  );
+
+  // Fallback visible
+  setTimeout(() => {
+    document.body.innerHTML =
+      "<h2>🔔 Tocá para avisar</h2>" +
+      "<a href='https://wa.me/" + numero +
+      "?text=" + mensaje + "'>Abrir WhatsApp</a>";
+  }, 2000);
+};
+</script>
+</head>
+
+<body>
+<h2>🔔 Llamando…</h2>
 </body>
 </html>
